@@ -37,6 +37,8 @@ struct HeaderView: View {
                         .bold()
                 }
             }
+            .buttonStyle(PlainButtonStyle())
+            .shadow(color: .clear, radius: 0)
             .fullScreenCover(isPresented: $showInfosView) {
                 InfosView(showInfosView: $showInfosView)
             }

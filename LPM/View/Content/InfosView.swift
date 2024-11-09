@@ -109,7 +109,10 @@ struct InfosView: View {
                                 .cornerRadius(15)
 
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            .shadow(color: .clear, radius: 0)
                             //ENVOYER UN MAIL - FIN
+                            
                             
                             // ENVOYER UN MAIL - DEBUT
                             Button(action: {
@@ -160,6 +163,8 @@ struct InfosView: View {
                                 .cornerRadius(15)
 
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            .shadow(color: .clear, radius: 0)
                             //ENVOYER UN MAIL - FIN
                          
                          
@@ -217,6 +222,8 @@ struct InfosView: View {
                                 .cornerRadius(15)
 
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            .shadow(color: .clear, radius: 0)
                             //ENVOYER UN MAIL - FIN
                         
                             
@@ -282,6 +289,8 @@ struct InfosView: View {
                                 .cornerRadius(15)
 
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            .shadow(color: .clear, radius: 0)
                             .sheet(isPresented: $isShowingShareSheet) {
                                 if let url = appURL {
                                     ShareSheet(activityItems: [url])
@@ -325,7 +334,7 @@ struct InfosView: View {
                                 
                                 Spacer()
                                 
-                                Text("0.5.0")
+                                Text("1.1.0")
                                     .font(.custom(uiSettings.customFontName, size: 16))
                                     .foregroundStyle(uiSettings.customFontColor1)
                                 

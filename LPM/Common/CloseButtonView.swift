@@ -35,6 +35,8 @@ struct CloseButtonView: View {
             }
                 
         }
+        .buttonStyle(PlainButtonStyle())
+        .shadow(color: .clear, radius: 0)
         
     }
 }

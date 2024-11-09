@@ -12,7 +12,7 @@ struct PartenairesView: View {
 
     var body: some View {
         VStack {
-            Text("Chez LPM, votre logement est publié sur : ")
+            Text("Chez LPM, votre logement est publié sur")
                 .font(.custom(uiSettings.customFontName, size: 18))
                 .bold()
                 
@@ -21,18 +21,32 @@ struct PartenairesView: View {
             HStack {
                 Image("logo_airbnb")
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 150, height: 50)
                     .padding(10)
-                Image("logo_marriott")
-                    .resizable()
-                    .frame(width: 100, height: 80)
-                    .padding(10)
+                
                 Image("logo_booking")
                     .resizable()
-                    .frame(width: 100, height: 60)
+                    .frame(width: 150, height: 50)
+
+                
+            }
+            .padding(10)
+            
+            HStack {
+               
+                Image("logo_homes_et_villas")
+                    .resizable()
+                    .frame(width: 130, height: 50)
+                    .padding(10)
+                
+                Image("logo_abritel")
+                    .resizable()
+                    .frame(width: 80, height: 80)
                     .padding(10)
                 
             }
+            .padding(10)
+
         }
         .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
 
