@@ -30,38 +30,38 @@ struct HomeView: View {
                 
                 SpacerRectangle(width: 1, height: 1)
 
-                VStack (alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Circle()
-                            .fill(Color(uiSettings.customMainColor1))
+                            .fill(Color(uiSettings.customMainColor1.opacity(0.5)))
                             .frame(width: 7, height: 7)
                         Text("Consulter vos performances locatives")
                     }
                     
                     HStack {
                         Circle()
-                            .fill(Color(uiSettings.customMainColor1))
+                            .fill(Color(uiSettings.customMainColor1.opacity(0.5)))
                             .frame(width: 7, height: 7)
                         Text("Réserver vos séjours propriétaires")
                     }
                     
                     HStack {
                         Circle()
-                            .fill(Color(uiSettings.customMainColor1))
+                            .fill(Color(uiSettings.customMainColor1.opacity(0.5)))
                             .frame(width: 7, height: 7)
                         Text("Rester informer des nouveautés")
                     }
                     
                     HStack {
                         Circle()
-                            .fill(Color(uiSettings.customMainColor1))
+                            .fill(Color(uiSettings.customMainColor1.opacity(0.5)))
                             .frame(width: 7, height: 7)
                         Text("Obtenir des réductions sur des séjours avec LPM")
                     }
 
                     HStack {
                         Circle()
-                            .fill(Color(uiSettings.customMainColor1))
+                            .fill(Color(uiSettings.customMainColor1.opacity(0.5)))
                             .frame(width: 7, height: 7)
                         Text("Nous contacter")
                     }

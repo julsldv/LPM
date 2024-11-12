@@ -21,12 +21,12 @@ struct PartenairesView: View {
             HStack {
                 Image("logo_airbnb")
                     .resizable()
-                    .frame(width: 150, height: 50)
+                    .frame(width: 170, height: 60)
                     .padding(10)
                 
                 Image("logo_booking")
                     .resizable()
-                    .frame(width: 150, height: 50)
+                    .frame(width: 170, height: 70)
 
                 
             }
@@ -36,12 +36,12 @@ struct PartenairesView: View {
                
                 Image("logo_homes_et_villas")
                     .resizable()
-                    .frame(width: 130, height: 50)
+                    .frame(width: 170, height: 90)
                     .padding(10)
                 
                 Image("logo_abritel")
                     .resizable()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 100, height: 100)
                     .padding(10)
                 
             }

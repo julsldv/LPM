@@ -41,11 +41,13 @@ struct HeaderView: View {
                 .resizable()
                 .frame(width: 200, height: 50)
 
+            SpacerRectangle(width: 1, height: 1)
             Spacer()
             
         
         }
-        .padding(10)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
     }
 }
 
