@@ -14,13 +14,6 @@ struct HeaderView: View {
     
     var body: some View {
         HStack {
-            Spacer()
-            Spacer()
-            Image("logo")
-                .resizable()
-                .frame(width: 200, height: 50)
-            Spacer()
-            
             // Bouton sur l'icône de question dans un cercle avec un dégradé
             Button(action: {
                 showInfosView = true
@@ -42,6 +35,15 @@ struct HeaderView: View {
             .fullScreenCover(isPresented: $showInfosView) {
                 InfosView(showInfosView: $showInfosView)
             }
+            Spacer()
+
+            Image("logo")
+                .resizable()
+                .frame(width: 200, height: 50)
+
+            Spacer()
+            
+        
         }
         .padding(10)
     }
