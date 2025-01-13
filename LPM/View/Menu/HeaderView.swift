@@ -9,21 +9,30 @@ import SwiftUI
 
 struct HeaderView: View {
     @ObservedObject var uiSettings = UiSettings.shared
-    @State private var showInfosView = false
-    @State private var isQuestionMarkTapped = false // Pour changer l'icône au tap
-    
+    @StateObject private var languageManager = LanguageManager()
+
     var body: some View {
+ 
         HStack {
-            // Bouton sur l'icône de question dans un cercle avec un dégradé
-            Button(action: {
-                showInfosView = true
-            }) {
+            LanguageToggleView()
+            
+            Spacer()
+            
+            Image("logo")
+                .resizable()
+                .frame(width: 200, height: 50)
+            
+            
+            
+            Spacer()
+            
+            // ✅ Bouton aligné à droite
+            NavigationLink(destination: InfosView()) {
                 ZStack {
                     Circle()
                         .fill(.gray.opacity(0.1))
                         .frame(width: 30, height: 30)
-
-
+                    
                     Image(systemName: "line.3.horizontal")
                         .font(.custom(uiSettings.customFontName, size: 16))
                         .foregroundStyle(uiSettings.customMainColor1)
@@ -32,25 +41,15 @@ struct HeaderView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .shadow(color: .clear, radius: 0)
-            .fullScreenCover(isPresented: $showInfosView) {
-                InfosView(showInfosView: $showInfosView)
-            }
-            Spacer()
-
-            Image("logo")
-                .resizable()
-                .frame(width: 200, height: 50)
-
-            SpacerRectangle(width: 1, height: 1)
-            Spacer()
             
-        
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 10)
+        .padding(.horizontal,10)
+        }
     }
-}
+
 
 #Preview {
-    HeaderView()
+    NavigationStack {
+        HeaderView()
+    }
 }

@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct LPMApp: App {
+    @StateObject var languageManager = LanguageManager()  // ✅ Gestionnaire global
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .preferredColorScheme(.light)
+                .environmentObject(languageManager)  // ✅ Injection dans toutes les vues
         }
     }
 }

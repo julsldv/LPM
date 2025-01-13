@@ -13,7 +13,6 @@ struct InfosView: View {
     @State private var showInfoPrivacyView = false
     @State private var showConsentementView = false
     @State var showDeleteAccountView = false
-    @Binding var showInfosView: Bool
     @State private var isBlurred = false
     @State private var tapCount = 0
     @State private var showTestView = false
@@ -22,25 +21,10 @@ struct InfosView: View {
     @State private var showManageCategoriesView = false
     @State private var isShowingShareSheet = false
     let appURL = URL(string: "https://apps.apple.com/app/id6462700029")
-    let emailAddress = "ContactMyImmoZ@gmail.com"
+    let emailAddress = "hello@leggettpm.fr"
+    @EnvironmentObject var languageManager: LanguageManager  // ✅ Gestion de la langue
 
     var body: some View {
-                VStack (spacing: 0) {
-                    HStack {
-                        CloseButtonView {
-                            showInfosView = false
-                        }
-                        SpacerRectangle(width: 1, height: 1)
-                        
-                        Text("Paramètres")
-                            .bold()
-                            .font(.custom(uiSettings.customFontName, size: 18))
-                            .foregroundStyle(uiSettings.customFontColor1)
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal, 15)
-                    .background(uiSettings.customBackColor1)
                     
                     ScrollView {
                             
@@ -51,7 +35,7 @@ struct InfosView: View {
 
                         VStack {
                             HStack {
-                                Text("Nous contacter")
+                                Text(languageManager.localizedText(for: "contact_us"))
                                     .font(.custom(uiSettings.customFontName, size: 16))
                                     .bold()
                                     .foregroundStyle(uiSettings.customFontColor2)
@@ -92,7 +76,7 @@ struct InfosView: View {
                             
                                     SpacerRectangle(width: 1, height: 1)
                                     
-                                    Text("Service client")
+                                    Text(languageManager.localizedText(for: "customer_service"))
                                         .font(.custom(uiSettings.customFontName, size: 16))
                                         .foregroundStyle(uiSettings.customFontColor1)
                                     
@@ -146,7 +130,7 @@ struct InfosView: View {
                                     
                                     SpacerRectangle(width: 1, height: 1)
                                     
-                                    Text("Service comptabilité")
+                                    Text(languageManager.localizedText(for: "accounting_service"))
                                         .font(.custom(uiSettings.customFontName, size: 16))
                                         .foregroundStyle(uiSettings.customFontColor1)
                                     
@@ -199,7 +183,7 @@ struct InfosView: View {
                                         .shadow(color: .gray.opacity(0.8), radius: 1, x: 1, y: 1)
                                         
                                       
-                                        Text("Obtenir une estimation")
+                                    Text(languageManager.localizedText(for: "get_estimate"))
                                             .font(.custom(uiSettings.customFontName, size: 16))
                                             .foregroundStyle(uiSettings.customFontColor1)
                                             .padding(5)
@@ -232,7 +216,7 @@ struct InfosView: View {
                             
                             
                             HStack {
-                                Text("Paramètres")
+                                Text(languageManager.localizedText(for: "settings"))
                                     .font(.custom(uiSettings.customFontName, size: 16))
                                     .bold()
                                     .foregroundStyle(uiSettings.customFontColor2)
@@ -272,7 +256,7 @@ struct InfosView: View {
                             
                                     SpacerRectangle(width: 1, height: 1)
                                     
-                                    Text("Partager LPM")
+                                    Text(languageManager.localizedText(for: "share_app"))
                                         .font(.custom(uiSettings.customFontName, size: 16))
                                         .foregroundStyle(uiSettings.customFontColor1)
                                     
@@ -328,13 +312,13 @@ struct InfosView: View {
                                 
                                 SpacerRectangle(width: 1, height: 1)
                                 
-                                Text("Version")
+                                Text(languageManager.localizedText(for: "version"))
                                     .font(.custom(uiSettings.customFontName, size: 16))
                                     .foregroundStyle(uiSettings.customFontColor1)
                                 
                                 Spacer()
                                 
-                                Text("1.1.0")
+                                Text("1.2.1")
                                     .font(.custom(uiSettings.customFontName, size: 16))
                                     .foregroundStyle(uiSettings.customFontColor1)
                                 
@@ -355,13 +339,26 @@ struct InfosView: View {
                         Spacer()
 
                     }
-                }
+                    .toolbar {
+                                        // Titre à gauche
+                                        ToolbarItem(placement: .topBarLeading) {
+                                            Text("Informations                                                      ")
+                                                .font(.custom(uiSettings.customFontName, size: 18))
+                                                .bold()
+                                                .foregroundStyle(uiSettings.customFontColor1)
+                                        }
+                                   
+                    }
              
         
     }
 }
 
 #Preview {
-    InfosView(showInfosView: .constant(false))
+    InfosView()
+        .environmentObject(LanguageManager())
 }
+
+
+
 

@@ -9,24 +9,30 @@ import SwiftUI
 
 struct PartenairesView: View {
     @ObservedObject var uiSettings = UiSettings.shared
+    @EnvironmentObject var languageManager: LanguageManager  // ✅ Gestion de la langue
 
     var body: some View {
         VStack {
-            Text("Chez LPM, votre logement est publié sur")
+            
+            Text(languageManager.localizedText(for: "title_partenaire"))
                 .font(.custom(uiSettings.customFontName, size: 18))
                 .bold()
-                
+                .multilineTextAlignment(.leading)  // ✅ Alignement à gauche
+                .frame(maxWidth: .infinity, alignment: .leading)  // ✅ Étend le texte à gauche
+            
+            
+            
 
 
             HStack {
                 Image("logo_airbnb")
                     .resizable()
-                    .frame(width: 170, height: 60)
+                    .frame(width: 170, height: 50)
                     .padding(10)
                 
                 Image("logo_booking")
                     .resizable()
-                    .frame(width: 170, height: 70)
+                    .frame(width: 170, height: 50)
 
                 
             }
@@ -41,7 +47,7 @@ struct PartenairesView: View {
                 
                 Image("logo_abritel")
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 80, height: 80)
                     .padding(10)
                 
             }

@@ -5,12 +5,12 @@
 //  Created by Julien PORTOLAN on 20/10/2024.
 //
 
-
 import SwiftUI
 
 struct BookingView: View {
     
     @ObservedObject var uiSettings = UiSettings.shared
+    @EnvironmentObject var languageManager: LanguageManager  // ✅ Gestion de la langue
     @State private var showBookingView: Bool = false
     
     var body: some View {
@@ -21,19 +21,20 @@ struct BookingView: View {
                     .font(.system(size: 50))
                     .foregroundColor(uiSettings.customMainColor1)
                 
-                Text("Réservation directe")
+                // ✅ Texte traduit
+                Text(languageManager.localizedText(for: "booking_title"))
                     .font(.custom(uiSettings.customFontName, size: 18))
                     .fontWeight(.bold)
                 
-                Text("Ici bla-bal vous pouvez directement réserver bla-bla-bla")
+                Text(languageManager.localizedText(for: "booking_description"))
                     .font(.custom(uiSettings.customFontName, size: 16))
                     .foregroundColor(.gray)
                 
                 Button(action: {
-                    showBookingView = true // Modifie la valeur du binding
-                    print("Ouverture de la webview propriétaires = \(showBookingView)") // Imprime la valeur dans la console
+                    showBookingView = true
+                    print("Ouverture de la webview propriétaires = \(showBookingView)")
                 }) {
-                    Text("Ouvrir")
+                    Text(languageManager.localizedText(for: "open_button"))
                         .font(.custom(uiSettings.customFontName, size: 16))
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -46,7 +47,6 @@ struct BookingView: View {
                         .cornerRadius(10)
                         .frame(width: UIScreen.main.bounds.width * 0.8)
                 }
-                // Applique le ButtonStyle personnalisé pour supprimer l'effet de blanchiment
                 .buttonStyle(NoHighlightButtonStyle())
             }
             .multilineTextAlignment(.center)
@@ -62,18 +62,16 @@ struct BookingView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .background(Color(uiSettings.customBackColor0))
-        .sheet(isPresented: $showBookingView, onDismiss: {
-                  showBookingView = false
-              }) {
-                  SafariView(url: URL(string: "https://sasturqoise.guestybookings.com/en/")!)
-                      .edgesIgnoringSafeArea(.all)
-              }
+        .sheet(isPresented: $showBookingView) {
+            SafariView(url: URL(string: "https://sasturqoise.guestybookings.com/en/")!)
+                .edgesIgnoringSafeArea(.all)
+        }
     }
 }
 
 struct BookingView_Previews: PreviewProvider {
     static var previews: some View {
         BookingView()
+            .environmentObject(LanguageManager())
     }
 }
-

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CarrouselView: View {
     @ObservedObject var uiSettings = UiSettings.shared
-    
+    @EnvironmentObject var languageManager: LanguageManager  // ✅ Gestion de la langue
     @State private var selectedCardIndex = 0
     @State private var offset: CGFloat = 0
     @State private var showSafariView = false
@@ -25,10 +25,11 @@ struct CarrouselView: View {
                         SimulateursCardView(
                             typeOfCard: "1",
                             imageName: "house",
-                            title: "Munissez-vous de votre identifiant et de votre mot de passe pour accéder à votre portail propriétaire",
-                            buttonText: "Portail propriétaires",
+                            title: languageManager.localizedText(for: "carousel_card1_title"),
+                            buttonText: languageManager.localizedText(for: "carousel_card1_button"),
                             buttonAction: {
                                 showSafariView = true
+                                HapticManager.triggerLightImpact()
                             },
                             imageback: "image4"
                         )
@@ -39,6 +40,8 @@ struct CarrouselView: View {
                             TapGesture()
                                 .onEnded {
                                     showSafariView = true
+                                    HapticManager.triggerLightImpact()
+
                                 }
                         )
                         
@@ -46,11 +49,12 @@ struct CarrouselView: View {
                         SimulateursCardView(
                             typeOfCard: "2",
                             imageName: "filemenu.and.cursorarrow",
-                            title: "Ici bla-bla-bla vous pouvez directement réserver depuis le bouton suivant bla-bla.",
-                            buttonText: "Site de réservation",
+                            title: languageManager.localizedText(for: "carousel_card2_title"),
+                            buttonText: languageManager.localizedText(for: "carousel_card2_button"),
                             buttonAction: {
                                 selection = 1
                                 showBookingView = true
+                                HapticManager.triggerLightImpact()
                             },
                             imageback: "bureau"
                         )
@@ -61,10 +65,13 @@ struct CarrouselView: View {
                             TapGesture()
                                 .onEnded {
                                     showBookingView = true
+                                    HapticManager.triggerLightImpact()
+
                                 }
                         )
                     }
                 }
+               
                 .content.offset(x: offset)
                 .gesture(
                     DragGesture()
@@ -95,7 +102,7 @@ struct CarrouselView: View {
             .sheet(isPresented: $showBookingView, onDismiss: {
                             showBookingView = false
                         }) {
-                            SafariView(url: URL(string: "https://sasturqoise.guestybookings.com/en/")!)
+                            SafariView(url: URL(string: "https://booking.leggettpm.com/fr/properties")!)
                                 .edgesIgnoringSafeArea(.all)
                         }
             
@@ -108,6 +115,7 @@ struct CarrouselView: View {
                 }
             }
         }
+        
     }
 }
 
